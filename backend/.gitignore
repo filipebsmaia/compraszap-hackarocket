@@ -1,0 +1,11 @@
+node_modules
+coverage
+dist
+build
+.env
+yarn.lock
+*.log
+
+tmp/uploads/*.*
+!tmp/uploads/avatar-placeholder-generic.png
+

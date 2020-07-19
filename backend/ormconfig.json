@@ -1,0 +1,30 @@
+[
+  {
+    "name": "default",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "docker",
+    "database": "hackarocket",
+    "entities": ["./src/app/entities/*.ts"],
+    "migrations": ["./src/database/migrations/*.ts"],
+    "cli": {
+      "migrationsDir": "./src/database/migrations"
+    }
+  },
+  {
+    "name": "seeds",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "docker",
+    "database": "hackarocket",
+    "entities": ["./src/app/entities/*.ts"],
+    "migrations": ["./src/database/seeds/*.ts"],
+    "cli": {
+      "migrationsDir": "./src/database/seeds"
+    }
+  }
+]
