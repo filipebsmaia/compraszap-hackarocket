@@ -1,12 +1,12 @@
 import { getRepository } from 'typeorm';
 import Product from '@app/entities/Product';
-import AppError from '@app/errors/AppError';
-import Category from '../../entities/Category';
+import randomColor from 'randomcolor';
+import Category from '@app/entities/Category';
 
 interface IRequest {
   market_id: string;
   name: string;
-  category_id: string;
+  category: string;
   quantity: number;
   price: number;
 }
@@ -17,23 +17,31 @@ class CreateProductService {
   public async execute({
     market_id,
     name,
-    category_id,
+    category: categoryName,
     quantity,
     price,
   }: IRequest): Promise<IResponse> {
     const productsRepository = getRepository(Product);
     const categoriesRepository = getRepository(Category);
 
-    const categoryExists = await categoriesRepository.findOne(category_id);
+    let category = await categoriesRepository.findOne({
+      where: {
+        title: categoryName.charAt(0).toUpperCase() + categoryName.slice(1),
+      },
+    });
 
-    if (!categoryExists) {
-      throw new AppError('Category does not exists');
+    if (!category) {
+      category = categoriesRepository.create({
+        color: randomColor(),
+        title: categoryName.charAt(0).toUpperCase() + categoryName.slice(1),
+      });
+      await categoriesRepository.save(category);
     }
 
     const product = productsRepository.create({
       name,
       quantity,
-      category_id,
+      category_id: category.id,
       price,
       market_id,
     });

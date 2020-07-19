@@ -18,7 +18,7 @@ export default class MarketProductController {
 
   public async create(request: Request, response: Response): Promise<Response> {
     const market_id = request.market.id;
-    const { name, quantity, price, category_id } = request.body;
+    const { name, quantity, price, category } = request.body;
 
     const createProductService = new CreateProductService();
     const product = await createProductService.execute({
@@ -26,7 +26,7 @@ export default class MarketProductController {
       name,
       quantity,
       price,
-      category_id,
+      category,
     });
 
     return response.json(classToClass(product));
@@ -35,7 +35,7 @@ export default class MarketProductController {
   public async update(request: Request, response: Response): Promise<Response> {
     const market_id = request.market.id;
     const { id } = request.params;
-    const { name, quantity, price, category_id } = request.body;
+    const { name, quantity, price } = request.body;
 
     const updateProductService = new UpdateProductService();
     const product = await updateProductService.execute({
@@ -44,7 +44,6 @@ export default class MarketProductController {
       name,
       quantity,
       price,
-      category_id,
     });
 
     return response.json(classToClass(product));

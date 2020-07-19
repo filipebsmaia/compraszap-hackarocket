@@ -29,7 +29,7 @@ class ProductListService {
 
     markets.forEach(foundMarket => {
       foundMarket.products.forEach(product => {
-        if (categories?.includes(product.category.title)) {
+        if (!categories || categories.includes(product.category.title)) {
           products.push(product);
         }
       });

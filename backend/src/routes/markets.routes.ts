@@ -18,6 +18,7 @@ const marketsController = new MarketsController();
 const marketPictureController = new MarketPictureController();
 
 marketsRouter.get('/:id', marketsController.show);
+marketsRouter.get('/', marketsController.index);
 
 marketsRouter.get(
   '/:id/products',

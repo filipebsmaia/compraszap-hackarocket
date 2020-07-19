@@ -16,7 +16,7 @@ productsRouter.post(
       name: Joi.string().required(),
       quantity: Joi.number().required(),
       price: Joi.number().required(),
-      category_id: Joi.string().uuid().required(),
+      category: Joi.string().required(),
     },
   }),
   ensureAuthenticated,
@@ -30,7 +30,6 @@ productsRouter.put(
       name: Joi.string().required(),
       quantity: Joi.number().required(),
       price: Joi.number().required(),
-      category_id: Joi.string().uuid().required(),
     },
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),
@@ -57,7 +56,7 @@ productsRouter.get(
     [Segments.QUERY]: {
       city: Joi.string().required(),
       district: Joi.string().required(),
-      categories: Joi.string().required(),
+      categories: Joi.string().optional().allow(''),
     },
   }),
   productCategoriesController.index, // list producs by city, district & categories

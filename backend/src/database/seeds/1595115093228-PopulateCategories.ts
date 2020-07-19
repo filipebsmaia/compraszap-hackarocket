@@ -9,7 +9,7 @@ export default class PopulateCategories1595115093228
       categoriesRepository.create({ title: 'Alimetação', color: '#703bba' }),
     );
     await categoriesRepository.save(
-      categoriesRepository.create({ title: 'Farmácia', color: '##a7ea07' }),
+      categoriesRepository.create({ title: 'Farmácia', color: '#a7ea07' }),
     );
     await categoriesRepository.save(
       categoriesRepository.create({ title: 'Serviços', color: '#8b224a' }),

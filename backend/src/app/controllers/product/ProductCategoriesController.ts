@@ -11,10 +11,10 @@ export default class ProductCategoriesController {
 
     const productListService = new ProductListService();
 
-    const products = productListService.execute({
+    const products = await productListService.execute({
       city: String(city),
       district: String(district),
-      categories: parsedCategories,
+      categories: categories === '' ? undefined : parsedCategories,
     });
 
     return response.json(classToClass(products));
