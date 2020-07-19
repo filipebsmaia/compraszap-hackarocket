@@ -18,7 +18,7 @@ export default class MarketProductController {
 
   public async create(request: Request, response: Response): Promise<Response> {
     const market_id = request.market.id;
-    const { name, quantity, price, category } = request.body;
+    const { name, quantity, price, category, image } = request.body;
 
     const createProductService = new CreateProductService();
     const product = await createProductService.execute({
@@ -27,6 +27,7 @@ export default class MarketProductController {
       quantity,
       price,
       category,
+      image,
     });
 
     return response.json(classToClass(product));

@@ -17,6 +17,7 @@ productsRouter.post(
       quantity: Joi.number().required(),
       price: Joi.number().required(),
       category: Joi.string().required(),
+      image: Joi.string().required(),
     },
   }),
   ensureAuthenticated,

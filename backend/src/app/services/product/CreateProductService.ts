@@ -7,6 +7,7 @@ interface IRequest {
   market_id: string;
   name: string;
   category: string;
+  image: string;
   quantity: number;
   price: number;
 }
@@ -20,6 +21,7 @@ class CreateProductService {
     category: categoryName,
     quantity,
     price,
+    image,
   }: IRequest): Promise<IResponse> {
     const productsRepository = getRepository(Product);
     const categoriesRepository = getRepository(Category);
@@ -44,7 +46,10 @@ class CreateProductService {
       category_id: category.id,
       price,
       market_id,
+      picture: image,
     });
+
+    console.log(product);
 
     await productsRepository.save(product);
 

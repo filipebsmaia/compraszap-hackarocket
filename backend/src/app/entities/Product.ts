@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 
 import Market from '@app/entities/Market';
+import { Expose } from 'class-transformer';
 import Category from './Category';
 
 @Entity('products')
@@ -24,6 +25,9 @@ class Product {
 
   @Column()
   quantity: number;
+
+  @Column()
+  picture: string;
 
   @Column()
   category_id: string;
@@ -53,6 +57,14 @@ class Product {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @Expose({ name: 'picture_url' })
+  getPictureUrl(): string | null {
+    if (!this.picture) {
+      return `${process.env.APP_API_URL}/files/default-product-image.png`;
+    }
+    return this.picture;
+  }
 }
 
 export default Product;
