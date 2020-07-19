@@ -39,7 +39,7 @@ export const AnimationContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 100px 30px;
+  padding: 40px 30px;
   background-color: #efefef;
   border-radius: 10px;
 
@@ -64,17 +64,6 @@ export const AnimationContainer = styled.div`
       font-size: 16px;
       color: #4f4f4f;
       margin: 16px auto 24px;
-
-      a {
-        color: #2d9cdb;
-        margin-top: 24px;
-        text-decoration: none;
-        transition: color 0.2s;
-
-        &:hover {
-          color: ${shade(0.2, '#2D9CDB')};
-        }
-      }
     }
   }
 

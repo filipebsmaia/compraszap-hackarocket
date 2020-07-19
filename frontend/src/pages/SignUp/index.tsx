@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { FiLogIn, FiLock } from 'react-icons/fi';
+import { FiLogIn, FiLock, FiMap, FiMapPin, FiHome } from 'react-icons/fi';
 import { AiOutlineWhatsApp } from 'react-icons/ai';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -16,13 +16,18 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 import { Container, Content, AnimationContainer } from './styles';
+import api from '../../services/api';
 
-interface SingInFormData {
+interface SingUpFormData {
+  name: string;
   whatsapp: string;
   password: string;
+  uf: string;
+  city: string;
+  district: string;
 }
 
-const SignIn: React.FC = () => {
+const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const { singIn } = useAuth();
@@ -30,19 +35,24 @@ const SignIn: React.FC = () => {
   const history = useHistory();
 
   const handleSubmit = useCallback(
-    async (data: SingInFormData) => {
+    async (data: SingUpFormData) => {
       try {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          whatsapp: Yup.string().required('Whatsapp obrigatório'),
+          name: Yup.string().required('Whatsapp obrigatório'),
+          whatsapp: Yup.string().required('Whatsapp obrigatóriao'),
           password: Yup.string().required('Senha obrigatória'),
+          uf: Yup.string().required('Estado obrigatório'),
+          city: Yup.string().required('Cidade obrigatória'),
+          district: Yup.string().required('Bairro obrigatório'),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
+        await api.post('/markets', data);
         await singIn({
           whatsapp: data.whatsapp,
           password: data.password,
@@ -73,12 +83,13 @@ const SignIn: React.FC = () => {
         <AnimationContainer>
           <img src={logoImg} alt="ComprasZap" />
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <h1>Olá! Faça login para continuar.</h1>
-            <p>
-              Preencha os dados de login ou crie uma conta clicando{' '}
-              <Link to="/signup">aqui</Link>
-            </p>
+            <h1>Faça seu cadastro na plataforma.</h1>
 
+            <Input
+              name="name"
+              icon={AiOutlineWhatsApp}
+              placeholder="Nome do Mercado"
+            />
             <Input
               name="whatsapp"
               icon={AiOutlineWhatsApp}
@@ -90,15 +101,18 @@ const SignIn: React.FC = () => {
               type="password"
               placeholder="Senha"
             />
-            <Button type="submit">Acessar Conta</Button>
+            <Input name="uf" icon={FiMap} placeholder="Estado" />
+            <Input name="city" icon={FiHome} placeholder="Cidade" />
+            <Input name="district" icon={FiMapPin} placeholder="Bairro" />
+            <Button type="submit">Criar Conta</Button>
           </Form>
-          <Link to="/signup">
+          <Link to="/">
             <FiLogIn />
-            Criar conta
+            Voltar para o login
           </Link>
         </AnimationContainer>
       </Content>
     </Container>
   );
 };
-export default SignIn;
+export default SignUp;

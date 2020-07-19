@@ -40,17 +40,17 @@ const ModalAddProduct: React.FC<ModalProps> = ({
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Form ref={formRef} onSubmit={handleSubmit}>
-        <h1>Novo Prato</h1>
+        <h1>Novo Produto</h1>
         <Input name="image" placeholder="Cole o link aqui" />
 
         <Input name="name" placeholder="Ex: Moda Italiana" />
         <Input name="price" placeholder="Ex: 19.90" />
+        <Input name="quantity" placeholder="Ex: 25" />
 
-        <Input name="description" placeholder="Descrição" />
         <Input name="category" placeholder="Categoria" />
 
         <button type="submit">
-          <p>Adicionar Prato</p>
+          <p>Adicionar Produto</p>
           <div>
             <FiCheckSquare size={24} />
           </div>

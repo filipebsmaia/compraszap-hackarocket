@@ -43,13 +43,13 @@ const ModalEditProduct: React.FC<ModalProps> = ({
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Form ref={formRef} onSubmit={handleSubmit} initialData={editingProduct}>
-        <h1>Editar Prato</h1>
+        <h1>Editar Produto</h1>
         <Input name="name" placeholder="Ex: Moda Italiana" />
         <Input name="price" placeholder="Ex: 19.90" />
         <Input name="quantity" placeholder="Quantidade, Ex: 250" />
 
         <button type="submit">
-          <div>Editar Prato</div>
+          <div>Editar Produto</div>
           <div>
             <FiCheckSquare size={24} />
           </div>

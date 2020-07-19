@@ -28,14 +28,14 @@ class CreateProductService {
 
     let category = await categoriesRepository.findOne({
       where: {
-        title: categoryName.charAt(0).toUpperCase() + categoryName.slice(1),
+        title: categoryName,
       },
     });
 
     if (!category) {
       category = categoriesRepository.create({
         color: randomColor(),
-        title: categoryName.charAt(0).toUpperCase() + categoryName.slice(1),
+        title: categoryName,
       });
       await categoriesRepository.save(category);
     }

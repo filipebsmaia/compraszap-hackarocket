@@ -5,7 +5,7 @@ interface Market {
   id: string;
   name: string;
   whatsapp: string;
-  avatar_url: string;
+  picture_url: string;
 }
 
 interface AuthState {

@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-import { Container, ProductContainer } from './styles';
+import { useAuth } from '../../hooks/auth';
 import Header from '../../components/Header';
 import Product from '../../components/Product';
+
 import api from '../../services/api';
+
 import ProductProps from '../../dtos/Product';
-import { useAuth } from '../../hooks/auth';
+
 import ModalAddProduct from '../../components/ModalAddFood';
 import ModalEditProduct from '../../components/ModalEditFood/index';
+
+import { Container, ProductContainer } from './styles';
 
 const Dashboard: React.FC = () => {
   const [products, setProducts] = useState<ProductProps[]>([]);
@@ -25,7 +29,6 @@ const Dashboard: React.FC = () => {
         .get<ProductProps[]>(`/markets/${market.id}/products`)
         .then(response => {
           setProducts(response.data);
-          console.log(response.data);
         });
     }
 
@@ -37,7 +40,7 @@ const Dashboard: React.FC = () => {
     product: Omit<ProductProps, 'id' | 'available'>,
   ): Promise<void> {
     try {
-      api.post('/products', { ...products, available: true }).then(response => {
+      api.post('/products', product).then(response => {
         setProducts([...products, response.data]);
       });
     } catch (err) {
@@ -80,7 +83,7 @@ const Dashboard: React.FC = () => {
   }
   return (
     <Container>
-      <Header />
+      <Header openModal={toggleModal} />
       <ModalAddProduct
         isOpen={modalOpen}
         setIsOpen={toggleModal}

@@ -48,7 +48,7 @@ class User {
   @Expose({ name: 'picture_url' })
   getPictureUrl(): string | null {
     if (!this.picture) {
-      return `${process.env.APP_API_URL}/files/default-profile-photo.png`;
+      return `${process.env.APP_API_URL}/files/avatar-placeholder-generic.png`;
     }
     return `${process.env.APP_API_URL}/files/${this.picture}`;
   }
