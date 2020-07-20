@@ -90,7 +90,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 Para clonar a aplicação você ira precisar do [Git](https://git-scm.com), [Node.js v12.16.3](https://nodejs.org/) ou maior + [Yarn v1.17.3](https://yarnpkg.com/) ou maior instalado em seu computador.
 Configurando aplicação:
 
-Lembre-se de acessar a pasta backend e frontend e configurar os seguintes arquivos:
+Lembre-se de acessar a pasta backend e frontend e configurar/criar os seguintes arquivos:
 
 - backend/.env
 - backend/ormconfig.json
