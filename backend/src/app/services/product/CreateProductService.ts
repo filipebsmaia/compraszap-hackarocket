@@ -49,8 +49,6 @@ class CreateProductService {
       picture: image,
     });
 
-    console.log(product);
-
     await productsRepository.save(product);
 
     return product;
